@@ -150,7 +150,7 @@ fn setup_text(mut commands: Commands, asset_server: Res<AssetServer>) {
                 TextSection {
                     value: String::from("meitdev"),
                     style: TextStyle {
-                        color: Color::LIME_GREEN,
+                        color: Color::Srgba(Srgba::GREEN),
                         ..credits_text_style.clone()
                     },
                 },
@@ -182,7 +182,7 @@ fn setup_text(mut commands: Commands, asset_server: Res<AssetServer>) {
                 TextSection {
                     value: String::from("shubibubi"),
                     style: TextStyle {
-                        color: Color::BLUE,
+                        color: Color::Srgba(Srgba::BLUE),
                         ..credits_text_style.clone()
                     },
                 },

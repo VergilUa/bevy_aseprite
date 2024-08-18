@@ -7,7 +7,6 @@ use std::{
 use image::{Pixel, Rgba, RgbaImage};
 use tracing::{error, warn};
 
-use crate::raw::RawAsepriteCel::Raw;
 use crate::{
     error::{AseResult, AsepriteError, AsepriteInvalidError},
     raw::{
@@ -103,7 +102,7 @@ impl Aseprite {
                         );
                         layers.insert(id, layer);
                     }
-                    crate::raw::RawAsepriteChunk::Cel {
+                    RawAsepriteChunk::Cel {
                         layer_index,
                         x,
                         y,
@@ -715,7 +714,7 @@ fn image_for_frame(aseprite: &Aseprite, frame: u16) -> AseResult<RgbaImage> {
             continue;
         }
 
-        let mut blank_cel: AsepriteCel;
+        let blank_cel: AsepriteCel;
 
         let cel = match layer.get_cel(frame as usize) {
             Ok(aseprite_cel) => aseprite_cel,

@@ -111,7 +111,7 @@ pub(crate) fn process_load(
                 frame_handles.push(texture_handle.clone_weak());
                 atlas.add_texture(Some(texture_handle.id()), texture);
             }
-            let (atlas, image) = match atlas.finish() {
+            let (atlas, image) = match atlas.build() {
                 Ok(atlas) => atlas,
                 Err(err) => {
                     error!("{:?}", err);
@@ -163,14 +163,18 @@ pub(crate) fn insert_sprite_sheet(
                 continue;
             }
         };
-        commands.entity(entity).insert(SpriteSheetBundle {
-            atlas: TextureAtlas {
-                layout: atlas,
-                index: 0,
-            },
-            texture: image,
-            transform,
-            ..Default::default()
-        });
+
+        commands.entity(entity)
+                .insert(SpriteBundle
+                {
+                    texture: image,
+                    transform,
+                    ..default()
+                })
+                .insert(TextureAtlas
+                {
+                    layout: atlas,
+                    index: 0,
+                });
     }
 }
